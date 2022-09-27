@@ -391,13 +391,16 @@ namespace BiliCommentLottery
                         for (int i = n_filted; i > n_filted - n_roll; --i)
                         {
                             int pRandom = random.Next(0, i);
-                            result.Add(tComments.ElementAt(pRandom));
+                            var rdObservable = tComments.ElementAt(pRandom);
+                            result.Add(rdObservable);
                             tComments[pRandom] = tComments[i - 1];
+                           
+                            MessageBox.Show($"恭喜{rdObservable.UName} 抽中了《活字引擎3》\n他/她当时的评论为:{rdObservable.Message}","恭喜",MessageBoxButton.OK,MessageBoxImage.Information);
                         }
                         CommentGrid.DataContext = result;
                         showRolled = true;
                         roll.Content = "返回所有楼层评论";
-                        MessageBox.Show("抽奖完成！");
+                        //MessageBox.Show("抽奖完成！");
                     }
                 }
                 else
